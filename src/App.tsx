@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import BusComponent from "./components/BusComponent";
+import Navbar from "./components/Navbar";
 
 function App() {
+  const routes = {
+    "dcl in": {
+      udc: ["10:25 AM", "10:28 AM", "10:34 AM"],
+      "Leroy/murray": ["10:25 AM", "10:28 AM", "10:34 AM"],
+      "riverside/columb": ["10:25 AM", "10:28 AM", "10:34 AM"],
+      "Union/campus": ["10:25 AM", "10:28 AM", "10:34 AM"],
+    },
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-dark">
+      <Navbar />
+      <BusComponent busTitle={"dcl in"} busData={routes["dcl in"]} />
     </div>
   );
 }
