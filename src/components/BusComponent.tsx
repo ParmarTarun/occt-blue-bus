@@ -11,12 +11,9 @@ interface BusComponentProps {
 }
 
 const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
-  const [activeBusStop, setActiveButStop] = useState("udc");
-
-  const updateActiveBusStop = (stop: string) => {
-    if (activeBusStop === stop) setActiveButStop("");
-    else setActiveButStop(stop);
-  };
+  const [activeBusStop, setActiveBusStop] = useState(
+    Object.entries(busData)[0][0]
+  );
 
   return (
     <div className="p-4 text-primary">
@@ -24,18 +21,25 @@ const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
         <h3 className="text-2xl">{busTitle.toUpperCase()}</h3>
       </div>
       <div className="p-6 w-full text-primary">
-        <div className="flex flex-col justiify-between">
-          {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
-            <div key={i}>
-              <button onClick={() => updateActiveBusStop(busStop)}>
-                <BusStop title={busStop} />
-              </button>
-              {busStop === activeBusStop && <BusTimings times={timings} />}
-              {Object.entries(busData).length - 1 !== i && ( // dont show next stops for last stop
-                <NextStops stops={stops} />
-              )}
-            </div>
-          ))}
+        <div className="flex gap-4">
+          <div className="flex flex-col justiify-between">
+            {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
+              <div key={i}>
+                <button
+                  className={`border border-primary rounded-2xl p-4 ${
+                    activeBusStop === busStop ? "bg-light" : "bg-primary"
+                  }`}
+                  onClick={() => setActiveBusStop(busStop)}
+                >
+                  <BusStop title={busStop} />
+                </button>
+                {Object.entries(busData).length - 1 !== i && ( // dont show next stops for last stop
+                  <NextStops stops={stops} />
+                )}
+              </div>
+            ))}
+          </div>
+          <BusTimings times={busData[activeBusStop][0]} />
         </div>
       </div>
     </div>

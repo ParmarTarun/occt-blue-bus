@@ -1,12 +1,10 @@
-import React from "react";
-
 interface busTimingsProps {
   times: string[];
 }
 
 const BusTimings = ({ times }: busTimingsProps) => {
   return (
-    <div className="bg-light rounded-lg mt-4 text-black p-2 inline-block">
+    <div className="bg-light rounded-lg mt-4 text-black p-2 inline-block h-min">
       {times.map((time) => (
         <p>{time}</p>
       ))}
