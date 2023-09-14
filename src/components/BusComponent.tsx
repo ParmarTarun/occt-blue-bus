@@ -11,13 +11,11 @@ interface BusComponentProps {
 }
 
 const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
-  const [activeBusStop, setActiveBusStop] = useState(
-    Object.entries(busData)[0][0]
-  );
+  const [activeBusStop, setActiveBusStop] = useState("");
 
   return (
     <div className="p-4 text-primary">
-      <div className="border-b border-primary w-1/4">
+      <div className="border-b border-primary w-1/2">
         <h3 className="text-2xl">{busTitle.toUpperCase()}</h3>
       </div>
       <div className="p-6 w-full text-primary">
@@ -26,7 +24,7 @@ const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
             {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
               <div key={i}>
                 <button
-                  className={`border border-primary rounded-2xl p-4 ${
+                  className={`border border-primary rounded-2xl p-2 ${
                     activeBusStop === busStop ? "bg-light" : "bg-primary"
                   }`}
                   onClick={() => setActiveBusStop(busStop)}
@@ -39,7 +37,7 @@ const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
               </div>
             ))}
           </div>
-          <BusTimings times={busData[activeBusStop][0]} />
+          {activeBusStop && <BusTimings times={busData[activeBusStop][0]} />}
         </div>
       </div>
     </div>

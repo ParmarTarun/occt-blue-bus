@@ -4,7 +4,7 @@ interface BusStopProps {
 
 const BusStop = ({ title }: BusStopProps) => {
   return (
-    <div className="text-dark font-normal text-2xl">{title.toUpperCase()}</div>
+    <div className="text-dark font-normal text-lg">{title.toUpperCase()}</div>
   );
 };
 

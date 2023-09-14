@@ -2,7 +2,6 @@ import "./App.css";
 import BusComponent from "./components/BusComponent";
 import Navbar from "./components/Navbar";
 import { routes } from "./data/routesData";
-import { getCurrentTime } from "./utility";
 
 const App = () => {
   return (
