@@ -1,7 +1,7 @@
 const Navbar = () => {
   return (
     <div className="bg-transparent w-full border-b border-primary">
-      <h1 className="text-primary font-bold text-5xl p-4">BLUE BUS</h1>
+      <h1 className="text-primary font-bold text-5xl p-4">LOGO</h1>
     </div>
   );
 };

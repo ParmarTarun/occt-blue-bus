@@ -6,7 +6,7 @@ interface busTimingsProps {
 
 const BusTimings = ({ times }: busTimingsProps) => {
   return (
-    <div className="bg-light rounded-lg mt-4 text-black p-2">
+    <div className="bg-light rounded-lg mt-4 text-black p-2 inline-block">
       {times.map((time) => (
         <p>{time}</p>
       ))}
