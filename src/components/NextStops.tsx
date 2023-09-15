@@ -15,7 +15,7 @@ const NextStops = ({ stops }: NextStopProps) => {
             onClick={() => setExpand(!expand)}
             className="flex items-center"
           >
-            {`${stops.length} more`}
+            {`${stops.length} stops`}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

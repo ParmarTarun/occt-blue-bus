@@ -9,7 +9,9 @@ const App = () => {
       <Navbar />
       <div className="p-4">
         <div className="mt-4">
-          <h1 className="text-primary text-2xl font-bold">Schedule</h1>
+          <h1 className="text-primary text-2xl font-bold">
+            Schedule (Week days)
+          </h1>
         </div>
         <div className="flex flex-wrap justify-left">
           {Object.entries(routes).map(([bus, busData], i) => (
