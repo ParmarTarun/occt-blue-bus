@@ -4,27 +4,42 @@ export const getCurrentTime = () => {
 };
 
 export const isPastTime = (time: string) => {
-  const time1 = new Date().toLocaleTimeString([], { timeStyle: "short" });
-  const time2 = time;
+  const currentTime = new Date().toLocaleTimeString([], { timeStyle: "short" });
+  const busTime = time;
 
-  const AmOrPm1 = time1.split(" ")[1];
-  const AmOrPm2 = time2.split(" ")[1];
+  const currentAmorPm = currentTime.split(" ")[1];
+  const busAmorPm = busTime.split(" ")[1];
 
-  if (AmOrPm1 !== AmOrPm2) {
-    if (AmOrPm1 === "AM") return false;
-    return true;
-  } else {
-    const hour1 = +time1.split(":")[0];
-    const hour2 = +time2.split(":")[0];
+  if (currentAmorPm === "AM" && busAmorPm === "PM") return false;
+  if (currentAmorPm === "PM" && busAmorPm === "AM") return true;
 
-    if (hour1 === hour2) {
-      const mins1 = +time1.split(":")[1].split(" ")[0];
-      const mins2 = +time2.split(":")[1].split(" ")[0];
-      if (mins1 < mins2) return false;
-      return true;
-    }
+  const currentHour = +currentTime.split(":")[0];
+  const busHour = +busTime.split(":")[0];
 
-    if (hour1 < hour2) return false;
+  if (busHour === 12 && currentHour === 12) {
+    const currentMin = +currentTime.split(":")[1].split(" ")[0];
+    const busMin = +busTime.split(":")[1].split(" ")[0];
+    if (currentMin < busMin) return false;
     return true;
   }
+  if (busHour === 12 && currentHour !== 12) {
+    return true;
+  }
+  if (busHour !== 12 && currentHour === 12) {
+    return false;
+  }
+  if (busHour === currentHour) {
+    const currentMin = +currentTime.split(":")[1].split(" ")[0];
+    const busMin = +busTime.split(":")[1].split(" ")[0];
+    if (currentMin < busMin) return false;
+    return true;
+  }
+  if (busHour > currentHour) {
+    return false;
+  } else {
+    return true;
+  }
+
+  // if (currentHour < busHour) return false;
+  // return true;
 };
