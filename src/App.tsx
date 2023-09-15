@@ -7,10 +7,15 @@ const App = () => {
   return (
     <div className="min-h-screen bg-dark">
       <Navbar />
-      <div className="flex flex-wrap justify-left">
-        {Object.entries(routes).map(([bus, busData]) => (
-          <BusComponent busTitle={bus} busData={busData} />
-        ))}
+      <div className="p-4">
+        <div className="mt-4">
+          <h1 className="text-primary text-2xl font-bold">Schedule</h1>
+        </div>
+        <div className="flex flex-wrap justify-left">
+          {Object.entries(routes).map(([bus, busData], i) => (
+            <BusComponent key={i} busTitle={bus} busData={busData} />
+          ))}
+        </div>
       </div>
     </div>
   );

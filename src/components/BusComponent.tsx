@@ -11,34 +11,39 @@ interface BusComponentProps {
 }
 
 const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
-  const [activeBusStop, setActiveBusStop] = useState("");
+  const toggleTimings = (id: string) => {
+    const el = document.querySelector<HTMLElement>("#" + id);
+    if (el)
+      if (el.classList.contains("grid")) {
+        el.classList.remove("grid");
+        el.classList.add("hidden");
+      } else {
+        el.classList.remove("hidden");
+        el.classList.add("grid");
+      }
+  };
 
   return (
-    <div className="p-4 text-primary">
-      <div className="border-b border-primary w-1/2">
-        <h3 className="text-2xl">{busTitle.toUpperCase()}</h3>
+    <div className="m-2 p-2 text-primary">
+      <div className="border-b border-primary">
+        <h3 className="text-2xl">{busTitle.toUpperCase().replace("_", " ")}</h3>
       </div>
-      <div className="p-6 w-full text-primary">
-        <div className="flex gap-4">
-          <div className="flex flex-col justiify-between">
-            {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
-              <div key={i}>
-                <button
-                  className={`border border-primary rounded-2xl p-2 ${
-                    activeBusStop === busStop ? "bg-light" : "bg-primary"
-                  }`}
-                  onClick={() => setActiveBusStop(busStop)}
-                >
-                  <BusStop title={busStop} />
-                </button>
-                {Object.entries(busData).length - 1 !== i && ( // dont show next stops for last stop
-                  <NextStops stops={stops} />
-                )}
-              </div>
-            ))}
+
+      <div className="flex flex-col justiify-between p-3">
+        {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
+          <div key={i}>
+            <button
+              className=" p-2 bg-transparent border border-primary text-primary"
+              onClick={() => toggleTimings(`${busTitle}_${i}`)}
+            >
+              <BusStop title={busStop} />
+            </button>
+            {<BusTimings times={timings} id={`${busTitle}_${i}`} />}
+            {Object.entries(busData).length - 1 !== i && ( // dont show next stops for last stop
+              <NextStops stops={stops} />
+            )}
           </div>
-          {activeBusStop && <BusTimings times={busData[activeBusStop][0]} />}
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -11,16 +11,32 @@ const NextStops = ({ stops }: NextStopProps) => {
     <div className="border-l border-primary p-4">
       {!!stops.length && (
         <div className=" text-primary font-normal text-md">
-          {!expand ? (
-            <button
-              onClick={() => setExpand(true)}
-            >{`${stops.length} more`}</button>
-          ) : (
-            <button className="text-left" onClick={() => setExpand(false)}>
+          <button
+            onClick={() => setExpand(!expand)}
+            className="flex items-center"
+          >
+            {`${stops.length} more`}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </button>
+          {expand && (
+            <div className="text-left">
               {stops.map((stop) => (
                 <p>{stop.toUpperCase()}</p>
               ))}
-            </button>
+            </div>
           )}
         </div>
       )}

@@ -2,20 +2,32 @@ import { isPastTime } from "../utility";
 
 interface busTimingsProps {
   times: string[];
+  id: string;
 }
 
-const BusTimings = ({ times }: busTimingsProps) => {
+const BusTimings = ({ times, id }: busTimingsProps) => {
   return (
-    <div className="bg-light rounded-lg mt-4 text-black p-2 inline-block h-min">
-      {times.map((time) => {
+    <div
+      className="
+        bg-light
+        rounded-b-lg
+        rounded-tr-2xl
+        text-sm
+        text-black 
+        p-2
+        grid-cols-3
+        hidden"
+      id={id}
+    >
+      {times.map((time, i) => {
         const colorClass = isPastTime(time) ? "text-red-800" : "text-green-800";
         return (
-          <p className="flex gap-1">
+          <div className="mr-2" key={i}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className={`w-6 h-6 ${colorClass}`}
+              className={`w-6 h-6 ${colorClass} inline-block`}
             >
               <path
                 fillRule="evenodd"
@@ -24,7 +36,7 @@ const BusTimings = ({ times }: busTimingsProps) => {
               />
             </svg>
             <span className={colorClass}>{time}</span>
-          </p>
+          </div>
         );
       })}
     </div>
