@@ -35,7 +35,12 @@ const StopDetails = ({ id, timings, busData }: stopDetailsProps) => {
           id={id}
         >
           {!Object.keys(route).length ? (
-            <BusTimings times={timings} showRoute={showRoute} />
+            <>
+              <BusTimings times={timings} showRoute={showRoute} />
+              <div>
+                <i>Click on time to see whole route</i>
+              </div>
+            </>
           ) : (
             <RouteComponent route={route} unsetRoute={() => setRoute({})} />
           )}
