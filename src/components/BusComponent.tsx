@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { busDataType } from "../types";
 import BusStop from "./BusStop";
-import BusTimings from "./BusTimings";
 import NextStops from "./NextStops";
+import StopDetails from "./StopDetails";
 
 interface BusComponentProps {
-  busData: {
-    [key: string]: string[][];
-  };
+  busData: busDataType;
   busTitle: string;
 }
 
@@ -38,7 +36,11 @@ const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
             >
               <BusStop title={busStop} />
             </button>
-            {<BusTimings times={timings} id={`${busTitle}_${i}`} />}
+            <StopDetails
+              id={`${busTitle}_${i}`}
+              timings={timings}
+              busData={busData}
+            />
             {Object.entries(busData).length - 1 !== i && ( // dont show next stops for last stop
               <NextStops stops={stops} />
             )}

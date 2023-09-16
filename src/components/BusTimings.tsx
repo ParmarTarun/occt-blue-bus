@@ -2,27 +2,24 @@ import { isPastTime } from "../utility";
 
 interface busTimingsProps {
   times: string[];
-  id: string;
+  showRoute: (busIndex: number) => void;
 }
 
-const BusTimings = ({ times, id }: busTimingsProps) => {
+const BusTimings = ({ times, showRoute }: busTimingsProps) => {
   return (
     <div
       className="
-        bg-light
-        rounded-b-lg
-        rounded-tr-2xl
-        text-sm
-        text-black 
-        p-2
         grid-cols-3
-        hidden"
-      id={id}
+        grid"
     >
       {times.map((time, i) => {
         const colorClass = isPastTime(time) ? "text-red-800" : "text-green-800";
         return (
-          <div className="mr-2" key={i}>
+          <div
+            className="mr-2 cursor-pointer"
+            key={i}
+            onClick={() => showRoute(i)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
