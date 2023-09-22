@@ -3,6 +3,11 @@ export const getCurrentTime = () => {
   return d.toLocaleTimeString([], { timeStyle: "short" });
 };
 
+export const getCurrentday = () => {
+  const d = new Date();
+  return d.getDay();
+};
+
 export const isPastTime = (time: string) => {
   const currentTime = new Date().toLocaleTimeString([], { timeStyle: "short" });
   const busTime = time;
