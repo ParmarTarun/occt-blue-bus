@@ -8,6 +8,12 @@ export const getCurrentday = () => {
   return d.getDay();
 };
 
+export const isWeekend = () => {
+  const dayIndex = getCurrentday();
+  if (dayIndex === 6 || dayIndex === 7) return true;
+  return false;
+};
+
 export const isPastTime = (time: string) => {
   const currentTime = new Date().toLocaleTimeString([], { timeStyle: "short" });
   const busTime = time;
