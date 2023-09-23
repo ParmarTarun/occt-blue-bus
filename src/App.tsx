@@ -23,25 +23,29 @@ const App = () => {
   useEffect(() => updateData(isWeekend()), []);
 
   return (
-    <div className="min-h-screen bg-dark">
+    <div className="min-h-screen bg-secondary">
       <Navbar />
       <div className="p-4">
         <div className="mt-4 flex items-center justify-between px-4 py-2">
           <h1 className="text-primary text-2xl font-bold">
             Schedule {weekend ? "(Weekend)" : "(Weekdays)"}
           </h1>
-          <div className="border border-primary p-0 md:flex">
+          <div className="border border-primary p-0 md:flex rounded-lg">
             <button
-              className={` px-3 sm:px-1 py-1 w-full ${
-                weekend ? "bg-transparent text-primary" : "bg-primary"
+              className={` md:px-3 sm:px-1 py-1 w-full ${
+                weekend
+                  ? "bg-transparent text-primary"
+                  : "bg-primary text-darkHighlight"
               }`}
               onClick={() => updateData(false)}
             >
               Weekday
             </button>
             <button
-              className={` px-3 sm:px-1 py-1 w-full ${
-                weekend ? "bg-primary" : "bg-transparent text-primary"
+              className={` md:px-3 sm:px-1 py-1 w-full ${
+                weekend
+                  ? "bg-primary text-darkHighlight"
+                  : "bg-transparent text-primary"
               }`}
               onClick={() => updateData(true)}
             >

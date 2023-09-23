@@ -10,7 +10,8 @@ const BusTimings = ({ times, showRoute }: busTimingsProps) => {
     <div
       className="
         grid-cols-3
-        grid"
+        grid
+        "
     >
       {times.map((time, i) => {
         const colorClass = isPastTime(time) ? "text-red-800" : "text-green-800";

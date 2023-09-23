@@ -24,7 +24,9 @@ const StopDetails = ({ id, timings, busData }: stopDetailsProps) => {
     <div>
       {
         <div
-          className=" bg-light
+          className="
+          border
+        border-primary
         rounded-b-lg
         rounded-tr-2xl
         text-sm
@@ -37,7 +39,7 @@ const StopDetails = ({ id, timings, busData }: stopDetailsProps) => {
           {!Object.keys(route).length ? (
             <>
               <BusTimings times={timings} showRoute={showRoute} />
-              <div>
+              <div className="text-primary">
                 <i>Click on time to see whole route</i>
               </div>
             </>

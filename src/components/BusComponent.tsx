@@ -54,7 +54,7 @@ const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
           {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
             <div key={i}>
               <button
-                className=" p-2 bg-transparent border border-primary text-primary"
+                className=" p-2 bg-primary border border-primary text-darkHighlight"
                 onClick={() => toggleTimings(`${busTitle}_${i}`)}
               >
                 <BusStop title={busStop} />
