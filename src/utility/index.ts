@@ -10,7 +10,7 @@ export const getCurrentday = () => {
 
 export const isWeekend = () => {
   const dayIndex = getCurrentday();
-  if (dayIndex === 6 || dayIndex === 7) return true;
+  if (dayIndex === 6 || dayIndex === 0) return true;
   return false;
 };
 

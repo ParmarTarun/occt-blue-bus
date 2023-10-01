@@ -7,7 +7,7 @@ const Navbar = () => {
         <Link to={"/"} className="text-primary font-bold text-4xl">
           Blue Bus
         </Link>
-        <div className="flex gap-2">
+        <div className="flex gap-2 text-primary">
           <Link to={"/"}>Home</Link>
           <Link to={"/admin"}>Admin</Link>
           <Link to={"/contact"}>Contact</Link>

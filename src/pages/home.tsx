@@ -24,7 +24,7 @@ const HomePage = () => {
     <div>
       <div className="flex items-center justify-between">
         <h1 className="text-primary text-2xl font-bold">
-          Schedule {weekend ? "(Weekend)" : "(Weekdays)"}
+          Schedule {weekend ? "(Weekend)" : "(Weekday)"}
         </h1>
         <div className="border border-primary p-0 md:flex rounded-lg">
           <button
