@@ -19,34 +19,33 @@ const NextBus = () => {
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
-        <h1 className="text-primary text-2xl font-bold">Next Buses</h1>@
-        <select
-          name="stop"
-          className="bg-transparent border border-primary rounded-md p-2"
-          onChange={(e) => handleStopSelect(e.target.value)}
-        >
-          {allstops.map((stop, i) => (
-            <option value={stop} key={i}>
-              {stop}
-            </option>
-          ))}
-        </select>
+        <h1 className="text-primary text-2xl font-bold">Next Buses</h1>
+        <div>
+          <span className="mr-2">@</span>
+          <select
+            name="stop"
+            className="bg-transparent border border-primary rounded-md p-2"
+            onChange={(e) => handleStopSelect(e.target.value)}
+          >
+            {allstops.map((stop, i) => (
+              <option value={stop} key={i}>
+                {stop}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      <p className="">(Experimental)</p>
-      <div>
+      <div className="w-full grid lg:grid-cols-4 sm:grid-cols-1">
         {Object.entries(nextBuses).map(
           ([bus, times], i) =>
             !!times.length && (
-              <div key={i}>
-                <h3 className="mb-2 mt-4 text-primary">
+              <div key={i} className="p-2 border border-primary rounded-md m-2">
+                <h3 className="text-primary mb-1">
                   {bus.replaceAll("_", " ")}
                 </h3>
                 <div className="grid grid-cols-3">
                   {times.slice(0, 3).map((time, i) => (
-                    <div
-                      className="border border-green-800 p-1 rounded-md mr-2"
-                      key={i}
-                    >
+                    <div className="mr-2" key={i}>
                       <BusTime time={time} colorClass="text-green-800" />
                     </div>
                   ))}
