@@ -3,8 +3,10 @@ import BusComponent from "../components/BusComponent";
 import { routesWeekly } from "../data/routesData";
 import { routesWeekends } from "../data/routesData";
 import { isWeekend } from "../utility";
+import { useRoutes } from "../context/route";
 const Schedule = () => {
-  const [routes, setRoutes] = useState(routesWeekends);
+  const { routes, setRoutes } = useRoutes();
+
   const [weekend, setWeekend] = useState(true);
 
   const updateData = (wknd: boolean) => {
@@ -16,7 +18,10 @@ const Schedule = () => {
       setRoutes(routesWeekly);
     }
   };
-  useEffect(() => updateData(isWeekend()), []);
+  useEffect(() => {
+    setRoutes(routesWeekends);
+    updateData(isWeekend());
+  }, []);
   return (
     <div className="mt-6">
       <div className="flex items-center justify-between">

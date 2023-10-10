@@ -1,4 +1,4 @@
-type routeProps = {
+export type routeProps = {
   [key: string]: {
     [key: string]: string[][];
   };

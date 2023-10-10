@@ -1,3 +1,5 @@
+import { routeProps } from "../data/routesData";
+
 export const getCurrentTime = () => {
   const d = new Date();
   return d.toLocaleTimeString([], { timeStyle: "short" });
@@ -53,4 +55,11 @@ export const isPastTime = (time: string) => {
 
   // if (currentHour < busHour) return false;
   // return true;
+};
+
+export const findNextBuses = (routes: routeProps, stop: string) => {
+  return {
+    WS_OUT: ["12:45 PM", "12:40 PM", "12:45 PM"],
+    DCL_OUT: ["12:45 PM", "12:45 PM", "12:45 PM"],
+  };
 };

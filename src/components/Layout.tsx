@@ -1,7 +1,7 @@
-import { reactChildren } from "../types";
+import { ReactChildrenProps } from "../types";
 import Navbar from "./Navbar";
 
-const Layout = (props: reactChildren) => {
+const Layout = (props: ReactChildrenProps) => {
   return (
     <div className="min-h-screen bg-secondary">
       <Navbar />

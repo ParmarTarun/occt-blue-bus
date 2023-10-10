@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { allstops } from "../data/stopsData";
 import BusTime from "./BusTime";
+import { useRoutes } from "../context/route";
+import { nextBusesType } from "../types";
+import { findNextBuses } from "../utility";
 
 const NextBus = () => {
-  const handleStopSelect = (stop: string) => {
-    console.log(stop);
-  };
+  const [nextBuses, setNextBuses] = useState<nextBusesType>({});
+  const { routes } = useRoutes();
 
-  const nextBuses = {
-    WS_OUT: ["12:45 PM", "12:45 PM", "12:45 PM"],
-    DCL_OUT: ["12:45 PM", "12:45 PM", "12:45 PM"],
+  const handleStopSelect = (stop: string) => {
+    const buses = findNextBuses(routes, stop);
+    setNextBuses(buses);
   };
 
   useEffect(() => handleStopSelect(allstops[0]));
