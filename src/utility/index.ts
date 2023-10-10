@@ -1,4 +1,5 @@
 import { routeProps } from "../data/routesData";
+import { nextBusesType } from "../types";
 
 export const getCurrentTime = () => {
   const d = new Date();
@@ -58,8 +59,13 @@ export const isPastTime = (time: string) => {
 };
 
 export const findNextBuses = (routes: routeProps, stop: string) => {
-  return {
-    WS_OUT: ["12:45 PM", "12:40 PM", "12:45 PM"],
-    DCL_OUT: ["12:45 PM", "12:45 PM", "12:45 PM"],
-  };
+  let nextBuses: nextBusesType = {};
+
+  Object.entries(routes).forEach(([bus, route]) => {
+    if (route.hasOwnProperty(stop)) {
+      nextBuses[bus] = route[stop][0].filter((time) => !isPastTime(time));
+    }
+  });
+
+  return nextBuses;
 };

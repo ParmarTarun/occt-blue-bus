@@ -14,12 +14,12 @@ const NextBus = () => {
     setNextBuses(buses);
   };
 
-  useEffect(() => handleStopSelect(allstops[0]));
+  useEffect(() => handleStopSelect(allstops[0]), []);
 
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
-        <h1 className="text-primary text-2xl font-bold">Next Buses</h1>
+        <h1 className="text-primary text-2xl font-bold">Next Buses</h1>@
         <select
           name="stop"
           className="bg-transparent border border-primary rounded-md p-2"
@@ -32,24 +32,28 @@ const NextBus = () => {
           ))}
         </select>
       </div>
+      <p className="">(Experimental)</p>
       <div>
-        {Object.entries(nextBuses).map(([bus, times], i) => (
-          <div key={i}>
-            <h3 className="mb-2 mt-4 text-primary">
-              {bus.replaceAll("_", " ")}
-            </h3>
-            <div className="grid grid-cols-3">
-              {times.map((time, i) => (
-                <div
-                  className="border border-green-800 p-1 rounded-md mr-2"
-                  key={i}
-                >
-                  <BusTime time={time} colorClass="text-green-800" />
+        {Object.entries(nextBuses).map(
+          ([bus, times], i) =>
+            !!times.length && (
+              <div key={i}>
+                <h3 className="mb-2 mt-4 text-primary">
+                  {bus.replaceAll("_", " ")}
+                </h3>
+                <div className="grid grid-cols-3">
+                  {times.map((time, i) => (
+                    <div
+                      className="border border-green-800 p-1 rounded-md mr-2"
+                      key={i}
+                    >
+                      <BusTime time={time} colorClass="text-green-800" />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
+              </div>
+            )
+        )}
       </div>
     </div>
   );
