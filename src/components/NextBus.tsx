@@ -14,7 +14,7 @@ const NextBus = () => {
     setNextBuses(buses);
   };
 
-  useEffect(() => handleStopSelect(allstops[0]), []);
+  useEffect(() => handleStopSelect(allstops[0]), [routes]);
 
   return (
     <div className="mb-4">
@@ -42,7 +42,7 @@ const NextBus = () => {
                   {bus.replaceAll("_", " ")}
                 </h3>
                 <div className="grid grid-cols-3">
-                  {times.map((time, i) => (
+                  {times.slice(0, 3).map((time, i) => (
                     <div
                       className="border border-green-800 p-1 rounded-md mr-2"
                       key={i}
