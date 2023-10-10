@@ -8,10 +8,10 @@ import { findNextBuses } from "../utility";
 const NextBus = () => {
   const defaultNextBusCount = 3;
   const { routes } = useRoutes();
-  const totalNextBuses = Object.keys(routes).length;
   const [nextBuses, setNextBuses] = useState<nextBusesType>({});
   const [expanded, setExpanded] = useState(false);
   const [nextBusCount, setNextBusCount] = useState(defaultNextBusCount);
+  const totalNextBuses = Object.keys(nextBuses).length;
 
   const handleStopSelect = (stop: string) => {
     const buses = findNextBuses(routes, stop);
@@ -29,7 +29,8 @@ const NextBus = () => {
   };
 
   useEffect(() => handleStopSelect(allstops[0]), [routes]);
-
+  console.log(totalNextBuses, defaultNextBusCount);
+  console.log(totalNextBuses - defaultNextBusCount);
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
@@ -52,26 +53,18 @@ const NextBus = () => {
       <div className="w-full grid lg:grid-cols-4 sm:grid-cols-1">
         {Object.entries(nextBuses)
           .slice(0, nextBusCount)
-          .map(
-            ([bus, times], i) =>
-              !!times.length && (
-                <div
-                  key={i}
-                  className="p-2 border border-primary rounded-md m-2"
-                >
-                  <h3 className="text-primary mb-1">
-                    {bus.replaceAll("_", " ")}
-                  </h3>
-                  <div className="grid grid-cols-3">
-                    {times.slice(0, 3).map((time, i) => (
-                      <div className="mr-2" key={i}>
-                        <BusTime time={time} colorClass="text-green-800" />
-                      </div>
-                    ))}
+          .map(([bus, times], i) => (
+            <div key={i} className="p-2 border border-primary rounded-md m-2">
+              <h3 className="text-primary mb-1">{bus.replaceAll("_", " ")}</h3>
+              <div className="grid grid-cols-3">
+                {times.slice(0, 3).map((time, i) => (
+                  <div className="mr-2" key={i}>
+                    <BusTime time={time} colorClass="text-green-800" />
                   </div>
-                </div>
-              )
-          )}
+                ))}
+              </div>
+            </div>
+          ))}
         <p
           className="text-primary flex justify-center items-center"
           onClick={() => toggleExpand()}

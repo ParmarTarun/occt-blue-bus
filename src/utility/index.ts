@@ -63,7 +63,8 @@ export const findNextBuses = (routes: routeProps, stop: string) => {
 
   Object.entries(routes).forEach(([bus, route]) => {
     if (route.hasOwnProperty(stop)) {
-      nextBuses[bus] = route[stop][0].filter((time) => !isPastTime(time));
+      const times = route[stop][0].filter((time) => !isPastTime(time));
+      if (times.length > 0) nextBuses[bus] = times;
     }
   });
 
