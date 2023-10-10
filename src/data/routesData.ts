@@ -50,7 +50,7 @@ export const routesWeekly: routeProps = {
         "Cleveland Av",
       ],
     ],
-    "floral/main": [
+    "Floral/Main": [
       [
         "07:44 AM",
         "08:54 AM",
@@ -128,7 +128,7 @@ export const routesWeekly: routeProps = {
       ],
       ["Front St", "Court/Hawley St"],
     ],
-    udc: [
+    UDC: [
       [
         "08:00 AM",
         "09:10 AM",
@@ -204,7 +204,7 @@ export const routesWeekly: routeProps = {
       ],
       ["river/front st"],
     ],
-    "leroy/murray": [
+    "Leroy/Murray": [
       [
         "07:18 AM",
         "07:43 AM",
@@ -250,7 +250,7 @@ export const routesWeekly: routeProps = {
         "margeret",
       ],
     ],
-    "river/columb": [
+    "River/Columb": [
       [
         "07:24 AM",
         "07:49 AM",
@@ -365,7 +365,7 @@ export const routesWeekly: routeProps = {
       ],
       ["Phy Facilities", "Bunn hill", "Ethel st", "elfred st"],
     ],
-    "river/columb": [
+    "River/Columb": [
       [
         "07:06 AM",
         "07:36 AM",
@@ -407,7 +407,7 @@ export const routesWeekly: routeProps = {
         "walnut st",
       ],
     ],
-    "leroy/murray": [
+    "Leroy/Murray": [
       [
         "07:11 AM",
         "07:41 AM",
@@ -515,7 +515,7 @@ export const routesWeekly: routeProps = {
       ],
       ["Court/hawley St", "front st"],
     ],
-    "main/murray": [
+    "Main/Murray": [
       [
         "07:21 AM",
         "07:43 AM",
@@ -559,7 +559,7 @@ export const routesWeekly: routeProps = {
         "Crary Av",
       ],
     ],
-    "floral/main": [
+    "Floral/Main": [
       [
         "07:27 AM",
         "07:49 AM",
@@ -685,7 +685,7 @@ export const routesWeekly: routeProps = {
       ],
       ["nursing school", "jenision/main", "lester av"],
     ],
-    "floral/main": [
+    "Floral/Main": [
       [
         "08:17 AM",
         "08:32 AM",
@@ -712,7 +712,7 @@ export const routesWeekly: routeProps = {
         "arthur st",
       ],
     ],
-    "main/murray": [
+    "Main/Murray": [
       [
         "08:23 AM",
         "08:38 AM",
@@ -772,7 +772,7 @@ export const routesWeekly: routeProps = {
       ],
       ["front st", "court/hawley"],
     ],
-    "main/murray": [
+    "Main/Murray": [
       [
         "07:33 AM",
         "08:03 AM",
@@ -802,7 +802,7 @@ export const routesWeekly: routeProps = {
         "Crary Av",
       ],
     ],
-    "floral/main": [
+    "Floral/Main": [
       [
         "07:39 AM",
         "08:09 AM",
@@ -979,7 +979,7 @@ export const routesWeekly: routeProps = {
         "lester",
       ],
     ],
-    "floral/main": [
+    "Floral/Main": [
       [
         "05:25 PM",
         "06:25 PM",
@@ -1005,7 +1005,7 @@ export const routesWeekly: routeProps = {
         "walnut st",
       ],
     ],
-    "leroy/murray": [
+    "Leroy/Murray": [
       [
         "05:33 PM",
         "06:33 PM",
@@ -1425,7 +1425,7 @@ export const routesWeekends: routeProps = {
         "Cleveland Av",
       ],
     ],
-    "floral/main": [
+    "Floral/Main": [
       [
         "10:09 AM",
         "10:54 AM",
@@ -1458,7 +1458,7 @@ export const routesWeekends: routeProps = {
         "Mather St",
       ],
     ],
-    "Main/murray": [
+    "Main/Murray": [
       [
         "10:15 AM",
         "11:00 AM",
@@ -1483,7 +1483,7 @@ export const routesWeekends: routeProps = {
       ],
       ["Front St", "Court/Hawley St"],
     ],
-    udc: [
+    UDC: [
       [
         "10:25 AM",
         "11:10 AM",
@@ -1535,7 +1535,7 @@ export const routesWeekends: routeProps = {
       ],
       ["river/front st"],
     ],
-    "leroy/murray": [
+    "Leroy/Murray": [
       [
         "10:28 AM",
         "11:13 AM",
@@ -1567,7 +1567,7 @@ export const routesWeekends: routeProps = {
         "margeret",
       ],
     ],
-    "river/columb": [
+    "River/Columb": [
       [
         "10:34 AM",
         "11:19 AM",
@@ -1644,7 +1644,7 @@ export const routesWeekends: routeProps = {
       ],
       ["Phy Facilities", "Bunn hill", "Ethel st", "elfred st"],
     ],
-    "river/columb": [
+    "River/Columb": [
       [
         "08:51 AM",
         "09:36 AM",
@@ -1676,7 +1676,7 @@ export const routesWeekends: routeProps = {
         "walnut st",
       ],
     ],
-    "leroy/murray": [
+    "Leroy/Murray": [
       [
         "08:56 AM",
         "09:41 AM",
@@ -1753,7 +1753,7 @@ export const routesWeekends: routeProps = {
       ],
       ["Court/hawley St", "front st"],
     ],
-    "main/murray": [
+    "Main/Murray": [
       [
         "09:06 AM",
         "09:51 AM",
@@ -1786,7 +1786,7 @@ export const routesWeekends: routeProps = {
         "Crary Av",
       ],
     ],
-    "floral/main": [
+    "Floral/Main": [
       [
         "09:12 AM",
         "09:57 AM",
@@ -1862,7 +1862,7 @@ export const routesWeekends: routeProps = {
         "lester",
       ],
     ],
-    "floral/main": [
+    "Floral/Main": [
       ["05:10 PM", "06:25 PM", "07:40 PM", "08:55 PM", "10:10 PM", "11:35 PM"],
       [
         "matthews st",
@@ -1879,7 +1879,7 @@ export const routesWeekends: routeProps = {
         "walnut st",
       ],
     ],
-    "leroy/murray": [
+    "Leroy/Murray": [
       ["05:18 PM", "06:33 PM", "07:48 PM", "09:03 PM", "10:18 PM", "11:43 PM"],
       [
         "eaton PL",

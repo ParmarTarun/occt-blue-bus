@@ -16,4 +16,7 @@ export const allstops = [
   "Washington/Lehigh",
   "ITC",
   "Meadows/Hayes",
+  "Susquehanna",
+  "Mountainview",
+  "Lower Campus",
 ];
