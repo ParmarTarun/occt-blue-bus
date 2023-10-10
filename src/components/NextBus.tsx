@@ -66,7 +66,7 @@ const NextBus = () => {
             </div>
           ))}
         <p
-          className="text-primary flex justify-center items-center"
+          className="text-primary flex justify-center items-center cursor-pointer"
           onClick={() => toggleExpand()}
         >
           {expanded
