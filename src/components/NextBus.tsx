@@ -65,30 +65,36 @@ const NextBus = () => {
               </div>
             </div>
           ))}
-        <p
-          className="text-primary flex justify-center items-center cursor-pointer"
-          onClick={() => toggleExpand()}
-        >
-          {expanded
-            ? "collapse"
-            : totalNextBuses - defaultNextBusCount + " more"}
-          {!expanded && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          )}
-        </p>
+        {totalNextBuses - defaultNextBusCount > 0 ? (
+          <p
+            className="text-primary flex justify-center items-center cursor-pointer"
+            onClick={() => toggleExpand()}
+          >
+            <>
+              {expanded
+                ? "collapse"
+                : totalNextBuses - defaultNextBusCount + " more"}
+              {!expanded && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              )}
+            </>
+          </p>
+        ) : (
+          <p>No Buses found</p>
+        )}
       </div>
     </div>
   );
