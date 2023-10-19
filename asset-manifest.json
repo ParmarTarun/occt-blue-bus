@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/occt-blue-bus/static/css/main.cbc70e87.css",
-    "main.js": "/occt-blue-bus/static/js/main.a5e9927d.js",
+    "main.js": "/occt-blue-bus/static/js/main.3ead5fbb.js",
     "index.html": "/occt-blue-bus/index.html",
     "main.cbc70e87.css.map": "/occt-blue-bus/static/css/main.cbc70e87.css.map",
-    "main.a5e9927d.js.map": "/occt-blue-bus/static/js/main.a5e9927d.js.map"
+    "main.3ead5fbb.js.map": "/occt-blue-bus/static/js/main.3ead5fbb.js.map"
   },
   "entrypoints": [
     "static/css/main.cbc70e87.css",
-    "static/js/main.a5e9927d.js"
+    "static/js/main.3ead5fbb.js"
   ]
 }
