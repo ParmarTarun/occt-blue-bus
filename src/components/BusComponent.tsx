@@ -7,10 +7,11 @@ import StopDetails from "./StopDetails";
 interface BusComponentProps {
   busData: busDataType;
   busTitle: string;
+  expanded: boolean;
 }
 
-const BusComponent = ({ busData, busTitle }: BusComponentProps) => {
-  const [expand, setExpand] = useState(false);
+const BusComponent = ({ busData, busTitle, expanded }: BusComponentProps) => {
+  const [expand, setExpand] = useState(expanded);
 
   const toggleTimings = (id: string) => {
     const el = document.querySelector<HTMLElement>("#" + id);

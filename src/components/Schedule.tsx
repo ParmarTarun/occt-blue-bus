@@ -9,6 +9,8 @@ const Schedule = () => {
 
   const [weekend, setWeekend] = useState(true);
 
+  const [deviceType, setDeviceType] = useState<"mobile" | "desktop">("mobile");
+
   const updateData = (wknd: boolean) => {
     if (wknd) {
       setWeekend(true);
@@ -21,6 +23,13 @@ const Schedule = () => {
   useEffect(() => {
     setRoutes(routesWeekends);
     updateData(isWeekend());
+    if (
+      /Android|webOS|iPhone|iPad|Opera Mini|Windows Phone/i.test(
+        navigator.userAgent
+      )
+    ) {
+      setDeviceType("mobile");
+    } else setDeviceType("desktop");
   }, []);
   return (
     <div className="mt-6">
@@ -53,7 +62,12 @@ const Schedule = () => {
       </div>
       <div className="flex flex-wrap justify-left">
         {Object.entries(routes).map(([bus, busData], i) => (
-          <BusComponent key={i} busTitle={bus} busData={busData} />
+          <BusComponent
+            key={i}
+            busTitle={bus}
+            busData={busData}
+            expanded={deviceType === "desktop"}
+          />
         ))}
       </div>
     </div>
