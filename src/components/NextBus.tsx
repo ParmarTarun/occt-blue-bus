@@ -65,7 +65,7 @@ const NextBus = () => {
               </div>
             </div>
           ))}
-        {totalNextBuses - defaultNextBusCount > 0 ? (
+        {totalNextBuses - defaultNextBusCount > 0 && (
           <p
             className="text-primary flex justify-center items-center cursor-pointer"
             onClick={() => toggleExpand()}
@@ -92,9 +92,8 @@ const NextBus = () => {
               )}
             </>
           </p>
-        ) : (
-          <p>No Buses found</p>
         )}
+        {Object.keys(nextBuses).length === 0 && <p>No buses found</p>}
       </div>
     </div>
   );
