@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const unreadCount = 0;
   return (
     <div className="bg-transparent w-full border-b border-primary">
       <div className="p-4 flex items-center justify-between">
@@ -13,7 +14,7 @@ const Navbar = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 inline"
             >
               <path
                 fillRule="evenodd"
@@ -21,6 +22,11 @@ const Navbar = () => {
                 clipRule="evenodd"
               />
             </svg>
+            {unreadCount > 0 && (
+              <span className="bg-darkHighlight rounded-md p-1 text-secondary">
+                {unreadCount}
+              </span>
+            )}
           </Link>
           {/* <Link to={"/contact"}>Contact</Link> */}
         </div>
