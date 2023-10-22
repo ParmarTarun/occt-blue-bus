@@ -28,7 +28,7 @@ const BusComponent = ({ busData, busTitle, expanded }: BusComponentProps) => {
   return (
     <div className="m-2 p-2 text-primary min-w-98">
       <div
-        className="flex items-center justify-between border-b border-primary w-56"
+        className="flex items-center justify-between border-b border-primary w-56 cursor-pointer"
         onClick={() => setExpand(!expand)}
       >
         <h3 className="text-2xl">
@@ -55,7 +55,7 @@ const BusComponent = ({ busData, busTitle, expanded }: BusComponentProps) => {
           {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
             <div key={i}>
               <button
-                className=" p-2 bg-primary border border-primary text-darkHighlight"
+                className=" p-2 bg-primary border border-primary text-secondary"
                 onClick={() => toggleTimings(`${busTitle}_${i}`)}
               >
                 <BusStop title={busStop} />
