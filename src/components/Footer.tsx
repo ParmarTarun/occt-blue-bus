@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="p-4 flex items-center justify-end ">
         <div className="flex gap-2 text-primary">
           {/* <Link to={"/admin"}>Admin</Link> */}
-          {/* <Link to={"/contact"}>Contact</Link> */}
+          <Link to={"/contact"}>Contact Maintainer</Link>
         </div>
       </div>
     </div>
