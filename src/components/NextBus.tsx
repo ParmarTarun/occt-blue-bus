@@ -29,8 +29,6 @@ const NextBus = () => {
   };
 
   useEffect(() => handleStopSelect(allstops[0]), [routes]);
-  console.log(totalNextBuses, defaultNextBusCount);
-  console.log(totalNextBuses - defaultNextBusCount);
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">

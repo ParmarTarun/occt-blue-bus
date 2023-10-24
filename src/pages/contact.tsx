@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { ScaleLoader } from "react-spinners";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -6,6 +8,7 @@ const ContactPage = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     setError("");
@@ -14,15 +17,25 @@ const ContactPage = () => {
       setError("All fields are required");
       return;
     }
-    console.log(name, email, message);
-
-    setSubmitSuccess(true);
-    setTimeout(() => {
-      setName("");
-      setEmail("");
-      setMessage("");
-      setSubmitSuccess(false);
-    }, 3000);
+    const url = process.env.REACT_APP_CONTACT_SERVICE_ENDPOINT;
+    if (!url) throw new Error("Endpoint for form submission is missing");
+    setLoading(true);
+    axios
+      .post(url, { name, email, message })
+      .then((data) => {
+        setSubmitSuccess(true);
+        setTimeout(() => {
+          setName("");
+          setEmail("");
+          setMessage("");
+          setSubmitSuccess(false);
+        }, 3000);
+      })
+      .catch((e) => {
+        alert("Something went wrong");
+        console.log(e);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -105,14 +118,22 @@ const ContactPage = () => {
               {submitSuccess ? (
                 <p className="mb-2 text-lg">Thank you for the feedback!</p>
               ) : (
-                <div className=" text-primary font-semibold mb-2">
-                  <button
-                    className={`bg-lightHighlight px-4 py-2 rounded-md`}
-                    onClick={handleSubmit}
-                  >
-                    SUBMIT
-                  </button>
-                </div>
+                <>
+                  {loading ? (
+                    <div className="my-4">
+                      <ScaleLoader color="#f5f0e1" />
+                    </div>
+                  ) : (
+                    <div className=" text-primary font-semibold mb-2">
+                      <button
+                        className={`bg-lightHighlight px-4 py-2 rounded-md`}
+                        onClick={handleSubmit}
+                      >
+                        SUBMIT
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>
