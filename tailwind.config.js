@@ -8,6 +8,7 @@ module.exports = {
         secondary: "#f5f0e1",
         darkHighlight: "#ff6e40",
         lightHighlight: "#ffc13b",
+        red: "#D22B2B",
       },
     },
   },
