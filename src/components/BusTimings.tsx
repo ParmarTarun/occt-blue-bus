@@ -14,7 +14,7 @@ const BusTimings = ({ times, showRoute }: busTimingsProps) => {
         "
     >
       {times.map((time, i) => {
-        const colorClass = isPastTime(time) ? "text-red-800" : "text-green-800";
+        const colorClass = isPastTime(time) ? "text-red" : "text-green-800";
         return (
           <div
             className="mr-2 cursor-pointer"

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useNotifications } from "../context/notification";
 
 const Navbar = () => {
-  const unreadCount = 0;
+  const { currentNotiNumber, notifications } = useNotifications();
+
   return (
     <div className="bg-transparent w-full border-b border-primary">
       <div className="p-4 flex items-center justify-between">
@@ -22,9 +24,9 @@ const Navbar = () => {
                 clipRule="evenodd"
               />
             </svg>
-            {unreadCount > 0 && (
+            {notifications.length - currentNotiNumber > 0 && (
               <span className="bg-darkHighlight rounded-md p-1 text-secondary">
-                {unreadCount}
+                {notifications.length - currentNotiNumber}
               </span>
             )}
           </Link>

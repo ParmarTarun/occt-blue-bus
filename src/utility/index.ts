@@ -70,3 +70,13 @@ export const findNextBuses = (routes: routeProps, stop: string) => {
 
   return nextBuses;
 };
+
+export const getUserNotiNumber = () => {
+  // read current notification number for that user
+  const notiNumber = parseInt(localStorage.getItem("nc") || "0");
+  return notiNumber;
+};
+export const updateNotiNumber = (number: number) => {
+  // update current notification number for that user
+  localStorage.setItem("nc", number.toString());
+};

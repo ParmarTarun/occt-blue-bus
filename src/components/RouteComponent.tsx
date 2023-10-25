@@ -28,9 +28,7 @@ const RouteComponent = ({ route, unsetRoute }: routeComponentProps) => {
         </div>
         <div>
           {Object.entries(route).map(([bus, time]) => {
-            const colorClass = isPastTime(time)
-              ? "text-red-800"
-              : "text-green-800";
+            const colorClass = isPastTime(time) ? "text-red" : "text-green-800";
             return (
               <div className="grid grid-cols-2 gap-2" key={time}>
                 <h2>{bus.toUpperCase()}</h2>
