@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNotifications } from "../context/notification";
-import { getUserNotiNumber, updateNotiNumber } from "../utility";
 
 const Notifications = () => {
   const { notifications, updateCurrentNotificationNumber, currentNotiNumber } =
@@ -16,7 +15,7 @@ const Notifications = () => {
         {notifications.map((notification, i) => (
           <div key={i} className="border rounded-md border-primary mt-4">
             <div className="px-4 py-2 bg-primary text-secondary flex justify-between">
-              <h3>{notification.timestamp}</h3>
+              <h3>{notification.createdAt}</h3>
               <p className="text-darkHighlight">
                 {currentNotiNumber < notification.notiNumber ? "NEW" : ""}
               </p>

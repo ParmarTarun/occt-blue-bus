@@ -20,28 +20,7 @@ type notificationContextType = {
 };
 
 const initialValues: notificationContextType = {
-  notifications: [
-    {
-      notiNumber: 1,
-      timestamp: getCurrentTime(),
-      message: "Welcome to blue bus app!",
-    },
-    {
-      notiNumber: 2,
-      timestamp: getCurrentTime(),
-      message: "Welcome to blue bus app!",
-    },
-    {
-      notiNumber: 3,
-      timestamp: getCurrentTime(),
-      message: "Welcome to blue bus app!",
-    },
-    {
-      notiNumber: 4,
-      timestamp: getCurrentTime(),
-      message: "Welcome to blue bus app!",
-    },
-  ],
+  notifications: [],
   setNotifications: () => {},
   currentNotiNumber: getUserNotiNumber(),
   updateCurrentNotificationNumber: () => {},

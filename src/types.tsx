@@ -17,9 +17,10 @@ export type nextBusesType = {
 };
 
 export type notificationType = {
+  id: string;
   notiNumber: number;
   message: string;
-  timestamp: string;
+  createdAt: string;
 };
 
 // {
