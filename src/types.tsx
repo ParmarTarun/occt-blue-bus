@@ -23,7 +23,7 @@ export type notificationType = {
   createdAt: string;
 };
 
-// {
-//   WS_OUT: ["12:45 PM", "12:45 PM", "12:45 PM"],
-//   DCL_OUT: ["12:45 PM", "12:45 PM", "12:45 PM"],
-// }
+export type feedbackType = {
+  message: string;
+  success: boolean;
+};
