@@ -11,7 +11,7 @@ const Notifications = () => {
 
   return (
     <div>
-      <div className="m-auto w-1/2">
+      <div className="m-auto sm:w-1/2 w-full">
         {notifications.map((notification, i) => (
           <div key={i} className="border rounded-md border-primary mt-4">
             <div className="px-4 py-2 bg-primary text-secondary flex justify-between">

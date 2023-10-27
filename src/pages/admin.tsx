@@ -18,6 +18,7 @@ const AdminPage = () => {
       .then(({ token }) => {
         localStorage.setItem("bbt", token);
         setAdminLoggedIn(true);
+        setSecret("");
       })
       .catch((e) => {
         console.log(e);
@@ -53,7 +54,7 @@ const AdminPage = () => {
             LOGOUT
           </button>
         </div>
-        <div className="grid grid-cols-3 pt-4">
+        <div className="grid sm:grid-cols-3 grid-cols-1 pt-4">
           <div className="col-span-1">
             <NotificationForm />
           </div>
@@ -63,7 +64,7 @@ const AdminPage = () => {
 
   return (
     <div>
-      <div className="w-1/2 m-auto text-center bg-primary text-secondary py-8 px-4">
+      <div className="sm:w-1/2 w-full m-auto text-center bg-primary text-secondary py-8 px-4">
         <h3 className="text-3xl">ADMIN LOGIN</h3>
         <div className="basic-input-group mt-4">
           <input
