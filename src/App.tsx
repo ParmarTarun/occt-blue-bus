@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  HashRouter,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import HomePage from "./pages/home";
@@ -18,7 +12,7 @@ import { AdminProvider } from "./context/admin";
 
 const App = () => {
   return (
-    <HashRouter>
+    <BrowserRouter basename="/occt-blue-bus">
       <AdminProvider>
         <NotificationsProvider>
           <Layout>
@@ -32,7 +26,7 @@ const App = () => {
           </Layout>
         </NotificationsProvider>
       </AdminProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
