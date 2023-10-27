@@ -20,6 +20,7 @@ const NotificationForm = () => {
     e.preventDefault();
     postNotification(message)
       .then((data) => {
+        setMessage("");
         setFeedback({ message: "Notification submitted!", success: true });
       })
       .catch((e) => {

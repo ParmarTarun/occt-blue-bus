@@ -8,7 +8,13 @@ type getNotificationsType = () => Promise<{
 export const postNotification = async (message: string) => {
   const url = process.env.REACT_APP_NOTIFICATIONS_ENDPOINT;
   if (!url) throw new Error("Endpoint for notifications is missing");
-  return axios.post(url, { message }).then((res) => res.data);
+  return axios
+    .post(
+      url,
+      { message },
+      { headers: { Authorization: `Bearer ${localStorage.getItem("bbt")}` } }
+    )
+    .then((res) => res.data);
 };
 
 export const getNotifications: getNotificationsType = async () => {
