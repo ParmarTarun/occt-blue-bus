@@ -6,17 +6,15 @@ import {
   useState,
 } from "react";
 import { ReactChildrenProps, notificationType } from "../types";
-import {
-  getCurrentTime,
-  getUserNotiNumber,
-  updateNotiNumber,
-} from "../utility";
+import { getUserNotiNumber, updateNotiNumber } from "../utility";
+import { getNotifications } from "../api/notification";
 
 type notificationContextType = {
   notifications: notificationType[];
   setNotifications: Dispatch<SetStateAction<notificationType[]>>;
   currentNotiNumber: number;
   updateCurrentNotificationNumber: () => void;
+  fetchNotifications: () => void;
 };
 
 const initialValues: notificationContextType = {
@@ -24,6 +22,7 @@ const initialValues: notificationContextType = {
   setNotifications: () => {},
   currentNotiNumber: getUserNotiNumber(),
   updateCurrentNotificationNumber: () => {},
+  fetchNotifications: () => {},
 };
 
 const NotificationContext =
@@ -45,12 +44,18 @@ export function NotificationsProvider({ children }: ReactChildrenProps) {
     updateNotiNumber(notifications.length);
     setCurrentNotiNumber(notifications.length);
   };
+  const fetchNotifications = () => {
+    getNotifications()
+      .then(({ notifications }) => setNotifications(notifications))
+      .catch((e: Error) => console.log(e));
+  };
 
   const value = {
     notifications,
     setNotifications,
     currentNotiNumber,
     updateCurrentNotificationNumber,
+    fetchNotifications,
   };
   return (
     <>
