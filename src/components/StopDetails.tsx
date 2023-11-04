@@ -11,8 +11,8 @@ interface stopDetailsProps {
 
 const StopDetails = ({ id, timings, busData }: stopDetailsProps) => {
   const [route, setRoute] = useState<routeDataType>({});
-
   const showRoute = (busIndex: number) => {
+    // console.log(busData, busIndex);
     let currentRoute: routeDataType = {};
     Object.entries(busData).forEach(([stop, data]) => {
       currentRoute[stop] = data[0][busIndex];

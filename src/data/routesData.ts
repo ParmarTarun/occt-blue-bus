@@ -826,6 +826,7 @@ export const routesWeekly: routeProps = {
     ],
     Pharmacy: [
       [
+        "07:42 AM",
         "08:12 AM",
         "08:42 AM",
         "09:12 AM",
