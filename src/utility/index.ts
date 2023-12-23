@@ -1,5 +1,6 @@
 import { routeProps } from "../data/routesData";
 import { nextBusesType } from "../types";
+import { DEFAULT_NEXT_BUS_TIMES_COUNT } from "./constants";
 
 export const getCurrentTime = () => {
   const d = new Date();
@@ -79,4 +80,16 @@ export const getUserNotiNumber = () => {
 export const updateNotiNumber = (number: number) => {
   // update current notification number for that user
   localStorage.setItem("nc", number.toString());
+};
+
+export const getNextBusTimesCount = () => {
+  // read current nextBusTimesCount for that user
+  const nextBusTimesCount = parseInt(
+    localStorage.getItem("nbtc") || DEFAULT_NEXT_BUS_TIMES_COUNT.toString()
+  );
+  return nextBusTimesCount;
+};
+export const updateNextBusTimesCount = (number: number) => {
+  // update current nextBusTimesCount for that user
+  localStorage.setItem("nbtc", number.toString());
 };

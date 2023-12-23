@@ -4,10 +4,12 @@ import BusTime from "./BusTime";
 import { useRoutes } from "../context/route";
 import { nextBusesType } from "../types";
 import { findNextBuses } from "../utility";
+import { usePreference } from "../context/preference";
 
 const NextBus = () => {
   const defaultNextBusCount = 3;
   const { routes } = useRoutes();
+  const { nextBusTimesCount } = usePreference();
   const [nextBuses, setNextBuses] = useState<nextBusesType>({});
   const [expanded, setExpanded] = useState(false);
   const [nextBusCount, setNextBusCount] = useState(defaultNextBusCount);
@@ -27,7 +29,7 @@ const NextBus = () => {
       setNextBusCount(totalNextBuses);
     }
   };
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => handleStopSelect(allstops[0]), [routes]);
   return (
     <div className="mb-4">
@@ -55,8 +57,8 @@ const NextBus = () => {
             <div key={i} className="p-2 border border-primary rounded-md m-2">
               <h3 className="text-primary mb-1">{bus.replaceAll("_", " ")}</h3>
               <div className="grid grid-cols-3">
-                {times.slice(0, 3).map((time, i) => (
-                  <div className="mr-2" key={i}>
+                {times.slice(0, nextBusTimesCount).map((time, i) => (
+                  <div className="mr-2 mb-1" key={i}>
                     <BusTime time={time} colorClass="text-green-800" />
                   </div>
                 ))}
