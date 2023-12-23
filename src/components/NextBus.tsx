@@ -7,12 +7,11 @@ import { findNextBuses } from "../utility";
 import { usePreference } from "../context/preference";
 
 const NextBus = () => {
-  const defaultNextBusCount = 3;
   const { routes } = useRoutes();
-  const { nextBusTimesCount } = usePreference();
+  const { nextBusTimesCount, nextBusCount } = usePreference();
   const [nextBuses, setNextBuses] = useState<nextBusesType>({});
   const [expanded, setExpanded] = useState(false);
-  const [nextBusCount, setNextBusCount] = useState(defaultNextBusCount);
+  const [currentNextBusCount, setCurrentNextBusCount] = useState(nextBusCount);
   const totalNextBuses = Object.keys(nextBuses).length;
 
   const handleStopSelect = (stop: string) => {
@@ -23,10 +22,10 @@ const NextBus = () => {
   const toggleExpand = () => {
     if (expanded) {
       setExpanded(false);
-      setNextBusCount(defaultNextBusCount);
+      setCurrentNextBusCount(nextBusCount);
     } else {
       setExpanded(true);
-      setNextBusCount(totalNextBuses);
+      setCurrentNextBusCount(totalNextBuses);
     }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,7 +51,7 @@ const NextBus = () => {
       </div>
       <div className="w-full grid lg:grid-cols-4 sm:grid-cols-1">
         {Object.entries(nextBuses)
-          .slice(0, nextBusCount)
+          .slice(0, currentNextBusCount)
           .map(([bus, times], i) => (
             <div key={i} className="p-2 border border-primary rounded-md m-2">
               <h3 className="text-primary mb-1">{bus.replaceAll("_", " ")}</h3>
@@ -65,15 +64,13 @@ const NextBus = () => {
               </div>
             </div>
           ))}
-        {totalNextBuses - defaultNextBusCount > 0 && (
+        {totalNextBuses - nextBusCount > 0 && (
           <p
             className="text-primary flex justify-center items-center cursor-pointer"
             onClick={() => toggleExpand()}
           >
             <>
-              {expanded
-                ? "collapse"
-                : totalNextBuses - defaultNextBusCount + " more"}
+              {expanded ? "collapse" : totalNextBuses - nextBusCount + " more"}
               {!expanded && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

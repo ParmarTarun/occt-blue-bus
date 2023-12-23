@@ -27,7 +27,3 @@ export type feedbackType = {
   message: string;
   success: boolean;
 };
-
-export type preferencesType = {
-  nextBusTimesCount: number;
-};
