@@ -12,8 +12,8 @@ const NextBusTimesCountSlider: FC<nextBusTimesCountSliderProps> = ({
   return (
     <div className="flex flex-col gap-2 sm:w-max align-center px-2">
       <div>
-        <p className="text-lg">Next Bus Count:</p>
-        <i className="opacity-50">Set the count of next buses </i>
+        <p className="text-lg">Next Bus Times Count:</p>
+        <i className="opacity-50">Set the count of next buses times </i>
       </div>
       <div className="md:w-52 sm:w-full">
         <input
