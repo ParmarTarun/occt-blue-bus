@@ -11,7 +11,7 @@ const Navbar = () => {
           Blue Bus
         </Link>
         <div className="flex text-primary">
-          <Link to={"/preferences"} className="p-2">
+          {/* <Link to={"/preferences"} className="p-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -24,7 +24,7 @@ const Navbar = () => {
                 clipRule="evenodd"
               />
             </svg>
-          </Link>
+          </Link> */}
           <Link to={"/notifications"} className="p-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
