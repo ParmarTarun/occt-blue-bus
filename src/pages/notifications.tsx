@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNotifications } from "../context/notification";
+import { ScaleLoader } from "react-spinners";
 
 const Notifications = () => {
   const {
@@ -7,6 +8,7 @@ const Notifications = () => {
     updateCurrentNotificationNumber,
     currentNotiNumber,
     fetchNotifications,
+    loadingNotifs,
   } = useNotifications();
 
   useEffect(() => {
@@ -21,7 +23,10 @@ const Notifications = () => {
   return (
     <div>
       <div className="m-auto sm:w-1/2 w-full">
-        {notifications.length === 0 && <p>No notifications yet</p>}
+        {loadingNotifs && <ScaleLoader />}
+        {!loadingNotifs && notifications.length === 0 && (
+          <p>No notifications yet</p>
+        )}
         {notifications.map((notification, i) => (
           <div
             key={i}

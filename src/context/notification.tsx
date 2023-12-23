@@ -15,6 +15,7 @@ type notificationContextType = {
   currentNotiNumber: number;
   updateCurrentNotificationNumber: () => void;
   fetchNotifications: () => void;
+  loadingNotifs: boolean;
 };
 
 const initialValues: notificationContextType = {
@@ -23,6 +24,7 @@ const initialValues: notificationContextType = {
   currentNotiNumber: getUserNotiNumber(),
   updateCurrentNotificationNumber: () => {},
   fetchNotifications: () => {},
+  loadingNotifs: false,
 };
 
 const NotificationContext =
@@ -36,6 +38,7 @@ export function NotificationsProvider({ children }: ReactChildrenProps) {
   const [notifications, setNotifications] = useState(
     initialValues.notifications
   );
+  const [loading, setLoading] = useState(initialValues.loadingNotifs);
   const [currentNotiNumber, setCurrentNotiNumber] = useState(
     initialValues.currentNotiNumber
   );
@@ -45,9 +48,14 @@ export function NotificationsProvider({ children }: ReactChildrenProps) {
     setCurrentNotiNumber(notifications.length);
   };
   const fetchNotifications = () => {
+    setLoading(true);
     getNotifications()
       .then(({ notifications }) => setNotifications(notifications))
-      .catch((e: Error) => console.log(e));
+      .catch((e: Error) => {
+        alert("Failed to fetch notifications");
+        console.log(e);
+      })
+      .finally(() => setLoading(false));
   };
 
   const value = {
@@ -56,6 +64,7 @@ export function NotificationsProvider({ children }: ReactChildrenProps) {
     currentNotiNumber,
     updateCurrentNotificationNumber,
     fetchNotifications,
+    loadingNotifs: loading,
   };
   return (
     <>
