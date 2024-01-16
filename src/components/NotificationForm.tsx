@@ -30,7 +30,7 @@ const NotificationForm = () => {
   };
 
   return (
-    <>
+    <div className=" lg:w-1/2 lg:m-auto">
       <div className="bg-primary px-4 py-2 text-secondary">
         <h3 className="text-lg">Notifcations</h3>
       </div>
@@ -59,7 +59,7 @@ const NotificationForm = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
