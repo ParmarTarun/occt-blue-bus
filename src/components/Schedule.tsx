@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import BusComponent from "../components/BusComponent";
-import { routesWeekly } from "../data/routesData";
-import { routesWeekends } from "../data/routesData";
+import { routesWeekly, routesWeekends } from "../data/routesData";
 import { isWeekend } from "../utility";
 import { useRoutes } from "../context/route";
 const Schedule = () => {
@@ -14,10 +13,10 @@ const Schedule = () => {
   const updateData = (wknd: boolean) => {
     if (wknd) {
       setWeekend(true);
-      setRoutes(routesWeekends);
+      setRoutes(routesWeekends());
     } else {
       setWeekend(false);
-      setRoutes(routesWeekly);
+      setRoutes(routesWeekly());
     }
   };
   useEffect(() => {

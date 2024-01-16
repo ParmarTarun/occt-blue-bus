@@ -5,12 +5,11 @@ import {
   useContext,
   useState,
 } from "react";
-import { routeProps } from "../data/routesData";
-import { ReactChildrenProps } from "../types";
+import { ReactChildrenProps, routeType } from "../types";
 
 type routeContextType = {
-  routes: routeProps;
-  setRoutes: Dispatch<SetStateAction<routeProps>>;
+  routes: routeType;
+  setRoutes: Dispatch<SetStateAction<routeType>>;
 };
 
 const initialValues: routeContextType = {

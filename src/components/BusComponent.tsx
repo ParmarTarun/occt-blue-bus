@@ -52,24 +52,26 @@ const BusComponent = ({ busData, busTitle, expanded }: BusComponentProps) => {
 
       {expand && (
         <div className="flex flex-col p-3">
-          {Object.entries(busData).map(([busStop, [timings, stops]], i) => (
-            <div key={i}>
-              <button
-                className=" p-2 bg-primary border border-primary text-secondary"
-                onClick={() => toggleTimings(`${busTitle}_${i}`)}
-              >
-                <BusStop title={busStop} />
-              </button>
-              <StopDetails
-                id={`${busTitle}_${i}`}
-                timings={timings}
-                busData={busData}
-              />
-              {Object.entries(busData).length - 1 !== i && ( // dont show next stops for last stop
-                <NextStops stops={stops} />
-              )}
-            </div>
-          ))}
+          {Object.entries(busData).map(
+            ([busStop, { timings, nextStops }], i) => (
+              <div key={i}>
+                <button
+                  className=" p-2 bg-primary border border-primary text-secondary"
+                  onClick={() => toggleTimings(`${busTitle}_${i}`)}
+                >
+                  <BusStop title={busStop} />
+                </button>
+                <StopDetails
+                  id={`${busTitle}_${i}`}
+                  timings={timings}
+                  busData={busData}
+                />
+                {Object.entries(busData).length - 1 !== i && ( // dont show next stops for last stop
+                  <NextStops stops={nextStops} />
+                )}
+              </div>
+            )
+          )}
         </div>
       )}
     </div>

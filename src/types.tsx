@@ -4,8 +4,17 @@ export type routeDataType = {
   [key: string]: string;
 };
 
+export type stopDataType = {
+  nextStops: string[];
+  timings: string[];
+};
+
 export type busDataType = {
-  [key: string]: string[][];
+  [key: string]: stopDataType;
+};
+
+export type routeType = {
+  [key: string]: busDataType;
 };
 
 export type ReactChildrenProps = {

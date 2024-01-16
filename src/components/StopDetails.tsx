@@ -14,8 +14,8 @@ const StopDetails = ({ id, timings, busData }: stopDetailsProps) => {
   const showRoute = (busIndex: number) => {
     // console.log(busData, busIndex);
     let currentRoute: routeDataType = {};
-    Object.entries(busData).forEach(([stop, data]) => {
-      currentRoute[stop] = data[0][busIndex];
+    Object.entries(busData).forEach(([stop, { timings, nextStops }]) => {
+      currentRoute[stop] = timings[busIndex];
     });
     setRoute(currentRoute);
   };

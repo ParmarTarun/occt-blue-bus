@@ -1,5 +1,4 @@
-import { routeProps } from "../data/routesData";
-import { nextBusesType } from "../types";
+import { nextBusesType, routeType } from "../types";
 import {
   DEFAULT_NEXT_BUS_COUNT,
   DEFAULT_NEXT_BUS_TIMES_COUNT,
@@ -62,12 +61,14 @@ export const isPastTime = (time: string) => {
   // return true;
 };
 
-export const findNextBuses = (routes: routeProps, stop: string) => {
+export const findNextBuses = (routes: routeType, stop: string) => {
   let nextBuses: nextBusesType = {};
 
-  Object.entries(routes).forEach(([bus, route]) => {
-    if (route.hasOwnProperty(stop)) {
-      const times = route[stop][0].filter((time) => !isPastTime(time));
+  Object.entries(routes).forEach(([bus, busData]) => {
+    if (busData.hasOwnProperty(stop)) {
+      const times = busData[stop]["timings"].filter(
+        (time) => !isPastTime(time)
+      );
       if (times.length > 0) nextBuses[bus] = times;
     }
   });
