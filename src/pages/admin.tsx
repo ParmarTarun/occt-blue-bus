@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { loginAdmin, validateToken } from "../api/admin";
+import { validateToken } from "../api/admin";
 import { useAdmin } from "../context/admin";
 import NotificationForm from "../components/NotificationForm";
 import AdminLoginForm from "../components/AdminLoginForm";
 import AdminHeader from "../components/AdminHeader";
 import ScheduleEditor from "../components/ScheduleEditor";
+import { useSchedule } from "../context/schedule";
 
 const adminTabContents = [<ScheduleEditor />, <NotificationForm />];
 
 const AdminPage = () => {
   const { adminLoggedIn, setAdminLoggedIn } = useAdmin();
+  const { fetchSchedule } = useSchedule();
   const [currentTabIndex, setCurrentTabIndex] = useState<number>(0);
   const [loading, setLoading] = useState(true);
 
@@ -23,7 +25,10 @@ const AdminPage = () => {
       .finally(() => setLoading(false));
   };
 
-  useEffect(checkForAdmin, []);
+  useEffect(() => {
+    checkForAdmin();
+    fetchSchedule("weekdays");
+  }, []);
 
   if (loading)
     return (

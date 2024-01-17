@@ -1,8 +1,9 @@
 import React, { FC } from "react";
+import { busDataType } from "../types";
 
 interface ScheduleEditorTableProps {
   bus: string;
-  busData: { [key: string]: string[][] };
+  busData: busDataType;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement>,
     bus: string,
@@ -18,7 +19,7 @@ const ScheduleEditorTable: FC<ScheduleEditorTableProps> = ({
   handleChange,
   addRow,
 }) => {
-  const totalTimes = Object.values(busData)[0][0].length;
+  const totalTimes = Object.values(busData)[0]["timings"].length;
   return (
     <table className="w-full text-center">
       <thead>
@@ -38,7 +39,7 @@ const ScheduleEditorTable: FC<ScheduleEditorTableProps> = ({
                 <td key={k}>
                   <input
                     type="text"
-                    value={data[0][j]}
+                    value={data["timings"][j]}
                     className=""
                     onChange={(e) => handleChange(e, bus, stop, j)}
                   />

@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { routesWeekly } from "../data/routesData";
+import { useEffect, useState } from "react";
 import ScheduleEditorTable from "./ScheduleEditorTable";
+import { useSchedule } from "../context/schedule";
 
 const ScheduleEditor = () => {
-  const [data, setData] = useState(routesWeekly);
+  const { schedule } = useSchedule();
+  const [data, setData] = useState(schedule?.data);
   const [openedBus, setOpenedBus] = useState("");
   const [edited, setEdited] = useState(false);
   const toggleSchedule = (bus: string) => {
@@ -23,7 +24,7 @@ const ScheduleEditor = () => {
     setEdited(false);
     setData({
       ...data,
-      [bus]: routesWeekly[bus],
+      [bus]: schedule?.data[bus] || {},
     });
   };
 
@@ -38,31 +39,37 @@ const ScheduleEditor = () => {
     stop: string,
     index: number
   ) => {
+    if (!data) return;
     // updates the specific bus time based on all the data
     setEdited(true);
-    const [oldTimes, oldNextStops] = data[bus][stop];
+    const { timings, nextStops } = data[bus][stop];
     const newTimes = [
-      ...oldTimes.slice(0, index),
+      ...timings.slice(0, index),
       e.target.value,
-      ...oldTimes.slice(index + 1),
+      ...timings.slice(index + 1),
     ];
     setData({
       ...data,
       [bus]: {
         ...data[bus],
-        [stop]: [newTimes, [...oldNextStops]],
+        [stop]: { timings: newTimes, nextStops },
       },
     });
   };
 
   const addRow = (bus: string, i: number) => {
+    if (!data) return;
     let newBusData = { ...data[bus] };
     Object.keys(data[bus]).forEach((stop) => {
-      const [oldTimes, oldNextStops] = data[bus][stop];
-      newBusData[stop] = [
-        [...oldTimes.slice(0, i + 1), "00:00 AM", ...oldTimes.slice(i + 1)],
-        oldNextStops,
-      ];
+      const { timings, nextStops } = data[bus][stop];
+      newBusData[stop] = {
+        nextStops,
+        timings: [
+          ...timings.slice(0, i + 1),
+          "00:00 AM",
+          ...timings.slice(i + 1),
+        ],
+      };
     });
     setData({
       ...data,
@@ -70,6 +77,8 @@ const ScheduleEditor = () => {
     });
   };
 
+  useEffect(() => setData(schedule?.data), [schedule]);
+  if (!data) return <p>Data Not Found!</p>;
   return (
     <div className="schedule-editor lg:w-1/2 lg:m-auto">
       {Object.entries(data).map(([bus, busData], i) => {
