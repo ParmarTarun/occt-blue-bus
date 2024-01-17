@@ -17,6 +17,17 @@ export type routeType = {
   [key: string]: busDataType;
 };
 
+export type scheduleType = {
+  name: string;
+  data: routeType;
+  createdAt: string;
+};
+
+export type scheduleBodyType = {
+  name: string;
+  data: routeType;
+};
+
 export type ReactChildrenProps = {
   children: ReactNode;
 };

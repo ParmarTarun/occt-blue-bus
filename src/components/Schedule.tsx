@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import BusComponent from "../components/BusComponent";
-import { routesWeekly, routesWeekends } from "../data/routesData";
 import { isWeekend } from "../utility";
-import { useRoutes } from "../context/route";
+import { useSchedule } from "../context/schedule";
 const Schedule = () => {
-  const { routes, setRoutes } = useRoutes();
-
+  const { schedule, loadingSchedule, fetchSchedule } = useSchedule();
   const [weekend, setWeekend] = useState(true);
 
   const [deviceType, setDeviceType] = useState<"mobile" | "desktop">("mobile");
@@ -13,14 +11,13 @@ const Schedule = () => {
   const updateData = (wknd: boolean) => {
     if (wknd) {
       setWeekend(true);
-      setRoutes(routesWeekends());
+      fetchSchedule("weekend");
     } else {
       setWeekend(false);
-      setRoutes(routesWeekly());
+      fetchSchedule("weekdays");
     }
   };
   useEffect(() => {
-    setRoutes(routesWeekends);
     updateData(isWeekend());
     if (
       /Android|webOS|iPhone|iPad|Opera Mini|Windows Phone/i.test(
@@ -59,16 +56,23 @@ const Schedule = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap justify-left">
-        {Object.entries(routes).map(([bus, busData], i) => (
-          <BusComponent
-            key={i}
-            busTitle={bus}
-            busData={busData}
-            expanded={deviceType === "desktop"}
-          />
-        ))}
-      </div>
+      {loadingSchedule && <p>Loading...</p>}
+      {!loadingSchedule && schedule && (
+        <div className="flex flex-wrap justify-left">
+          {
+            <>
+              {Object.entries(schedule.data).map(([bus, busData], i) => (
+                <BusComponent
+                  key={i}
+                  busTitle={bus}
+                  busData={busData}
+                  expanded={deviceType === "desktop"}
+                />
+              ))}
+            </>
+          }
+        </div>
+      )}
     </div>
   );
 };

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { allstops } from "../data/stopsData";
 import BusTime from "./BusTime";
-import { useRoutes } from "../context/route";
 import { nextBusesType } from "../types";
 import { findNextBuses } from "../utility";
 import { usePreference } from "../context/preference";
+import { useSchedule } from "../context/schedule";
 
 const NextBus = () => {
-  const { routes } = useRoutes();
+  const { schedule, loadingSchedule } = useSchedule();
+  const scheduleData = schedule?.data || {};
   const { nextBusTimesCount, nextBusCount } = usePreference();
   const [nextBuses, setNextBuses] = useState<nextBusesType>({});
   const [expanded, setExpanded] = useState(false);
@@ -15,7 +16,7 @@ const NextBus = () => {
   const totalNextBuses = Object.keys(nextBuses).length;
 
   const handleStopSelect = (stop: string) => {
-    const buses = findNextBuses(routes, stop);
+    const buses = findNextBuses(scheduleData, stop);
     setNextBuses(buses);
   };
 
@@ -29,7 +30,9 @@ const NextBus = () => {
     }
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => handleStopSelect(allstops[0]), [routes]);
+  useEffect(() => {
+    if (!loadingSchedule) handleStopSelect(allstops[0]);
+  }, [scheduleData]);
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
@@ -49,49 +52,58 @@ const NextBus = () => {
           </select>
         </div>
       </div>
-      <div className="w-full grid lg:grid-cols-4 sm:grid-cols-1">
-        {Object.entries(nextBuses)
-          .slice(0, currentNextBusCount)
-          .map(([bus, times], i) => (
-            <div key={i} className="p-2 border border-primary rounded-md m-2">
-              <h3 className="text-primary mb-1">{bus.replaceAll("_", " ")}</h3>
-              <div className="grid grid-cols-3">
-                {times.slice(0, nextBusTimesCount).map((time, i) => (
-                  <div className="mr-2 mb-1" key={i}>
-                    <BusTime time={time} colorClass="text-green-800" />
-                  </div>
-                ))}
+
+      {loadingSchedule ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="w-full grid lg:grid-cols-4 sm:grid-cols-1">
+          {Object.entries(nextBuses)
+            .slice(0, currentNextBusCount)
+            .map(([bus, times], i) => (
+              <div key={i} className="p-2 border border-primary rounded-md m-2">
+                <h3 className="text-primary mb-1">
+                  {bus.replaceAll("_", " ")}
+                </h3>
+                <div className="grid grid-cols-3">
+                  {times.slice(0, nextBusTimesCount).map((time, i) => (
+                    <div className="mr-2 mb-1" key={i}>
+                      <BusTime time={time} colorClass="text-green-800" />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        {totalNextBuses - nextBusCount > 0 && (
-          <p
-            className="text-primary flex justify-center items-center cursor-pointer"
-            onClick={() => toggleExpand()}
-          >
-            <>
-              {expanded ? "collapse" : totalNextBuses - nextBusCount + " more"}
-              {!expanded && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-              )}
-            </>
-          </p>
-        )}
-        {Object.keys(nextBuses).length === 0 && <p>No buses found</p>}
-      </div>
+            ))}
+          {totalNextBuses - nextBusCount > 0 && (
+            <p
+              className="text-primary flex justify-center items-center cursor-pointer"
+              onClick={() => toggleExpand()}
+            >
+              <>
+                {expanded
+                  ? "collapse"
+                  : totalNextBuses - nextBusCount + " more"}
+                {!expanded && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                )}
+              </>
+            </p>
+          )}
+          {Object.keys(nextBuses).length === 0 && <p>No buses found</p>}
+        </div>
+      )}
     </div>
   );
 };
