@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ScheduleEditorTable from "./ScheduleEditorTable";
-import { useSchedule } from "../context/schedule";
+import { useSchedule } from "../../context/schedule";
 
-const ScheduleEditor = () => {
+const SchedulesTab = () => {
   const { schedule } = useSchedule();
   const [data, setData] = useState(schedule?.data);
   const [openedBus, setOpenedBus] = useState("");
@@ -124,4 +124,4 @@ const ScheduleEditor = () => {
   );
 };
 
-export default ScheduleEditor;
+export default SchedulesTab;

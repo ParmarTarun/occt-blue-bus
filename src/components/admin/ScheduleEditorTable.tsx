@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { busDataType } from "../types";
+import { busDataType } from "../../types";
 
 interface ScheduleEditorTableProps {
   bus: string;

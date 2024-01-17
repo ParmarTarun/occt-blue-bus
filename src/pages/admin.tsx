@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { validateToken } from "../api/admin";
 import { useAdmin } from "../context/admin";
-import NotificationForm from "../components/NotificationForm";
-import AdminLoginForm from "../components/AdminLoginForm";
-import AdminHeader from "../components/AdminHeader";
-import ScheduleEditor from "../components/ScheduleEditor";
+import NotificationForm from "../components/admin/NotificationForm";
+import AdminLoginForm from "../components/admin/AdminLoginForm";
+import AdminHeader from "../components/admin/AdminHeader";
 import { useSchedule } from "../context/schedule";
+import SchedulesTab from "../components/admin/SchedulesTab";
 
-const adminTabContents = [<ScheduleEditor />, <NotificationForm />];
+const adminTabContents = [<SchedulesTab />, <NotificationForm />];
 
 const AdminPage = () => {
   const { adminLoggedIn, setAdminLoggedIn } = useAdmin();

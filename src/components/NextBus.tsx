@@ -8,7 +8,7 @@ import { useSchedule } from "../context/schedule";
 
 const NextBus = () => {
   const { schedule, loadingSchedule } = useSchedule();
-  const scheduleData = schedule?.data || {};
+  const scheduleData = schedule?.data || undefined;
   const { nextBusTimesCount, nextBusCount } = usePreference();
   const [nextBuses, setNextBuses] = useState<nextBusesType>({});
   const [expanded, setExpanded] = useState(false);
@@ -16,6 +16,7 @@ const NextBus = () => {
   const totalNextBuses = Object.keys(nextBuses).length;
 
   const handleStopSelect = (stop: string) => {
+    if (!scheduleData) return;
     const buses = findNextBuses(scheduleData, stop);
     setNextBuses(buses);
   };
@@ -31,7 +32,7 @@ const NextBus = () => {
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (!loadingSchedule) handleStopSelect(allstops[0]);
+    if (!loadingSchedule && scheduleData) handleStopSelect(allstops[0]);
   }, [scheduleData]);
   return (
     <div className="mb-4">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { postNotification } from "../api/notification";
-import { feedbackType } from "../types";
+import { postNotification } from "../../api/notification";
+import { feedbackType } from "../../types";
 
 const NotificationForm = () => {
   const [message, setMessage] = useState("");

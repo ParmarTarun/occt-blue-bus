@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { loginAdmin } from "../api/admin";
+import { loginAdmin } from "../../api/admin";
 
 interface AdminLoginFormProps {
   setAdminLoggedIn: (p: boolean) => void;
