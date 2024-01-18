@@ -14,7 +14,7 @@ const HomePage = () => {
       {/* <NextBus />
       <Schedule /> */}
       <div className="m-auto w-max text-2xl italic">
-        <p className="">Currently under maintenance!</p>
+        <p className="">Currently under maintenance for schedule update!</p>
       </div>
     </>
   );
