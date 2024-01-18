@@ -28,7 +28,8 @@ const ScheduleEditor: FC<ScheduleEditorProps> = ({ schedule: cSchedule }) => {
     setSchedule({
       ...schedule,
       data: {
-        [bus]: schedule["data"][bus],
+        ...schedule.data,
+        [bus]: schedule.data[bus],
       },
     });
   };
@@ -55,6 +56,7 @@ const ScheduleEditor: FC<ScheduleEditorProps> = ({ schedule: cSchedule }) => {
     setSchedule({
       ...schedule,
       data: {
+        ...schedule.data,
         [bus]: {
           ...schedule.data[bus],
           [stop]: { timings: newTimes, nextStops },
@@ -79,13 +81,15 @@ const ScheduleEditor: FC<ScheduleEditorProps> = ({ schedule: cSchedule }) => {
     setSchedule({
       ...schedule,
       data: {
+        ...schedule.data,
         [bus]: newBusData,
       },
     });
   };
 
   return (
-    <div className="schedule-editor lg:w-1/2 lg:m-auto">
+    <div className="schedule-editor ">
+      <h2 className="text-4xl uppercase font-semibold">{schedule.name}</h2>
       {Object.entries(schedule.data).map(([bus, busData], i) => {
         return (
           <section className="schedule-wrapper" key={i}>
