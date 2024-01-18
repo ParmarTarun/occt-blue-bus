@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import ScheduleEditorTable from "./ScheduleEditorTable";
 import { scheduleType } from "../../types";
+import { updateSchedule } from "../../api/schedule";
 
 interface ScheduleEditorProps {
   schedule: scheduleType;
@@ -26,17 +27,24 @@ const ScheduleEditor: FC<ScheduleEditorProps> = ({ schedule: cSchedule }) => {
   const resetData = (bus: string) => {
     setEdited(false);
     setSchedule({
-      ...schedule,
+      ...cSchedule,
       data: {
-        ...schedule.data,
-        [bus]: schedule.data[bus],
+        ...cSchedule.data,
+        [bus]: cSchedule.data[bus],
       },
     });
   };
 
   const saveData = () => {
-    alert("Make Api Call with data state");
-    setEdited(false);
+    updateSchedule({ name: schedule.name, data: schedule.data })
+      .then(({ schedule }) => {
+        setSchedule(schedule);
+        setEdited(false);
+      })
+      .catch((e) => {
+        alert("Failed to udpate the schedule");
+        console.log(e);
+      });
   };
 
   const handleChange = (
@@ -85,6 +93,26 @@ const ScheduleEditor: FC<ScheduleEditorProps> = ({ schedule: cSchedule }) => {
         [bus]: newBusData,
       },
     });
+    setEdited(true);
+  };
+
+  const removeRow = (bus: string, i: number) => {
+    let newBusData = { ...schedule.data[bus] };
+    Object.keys(schedule.data[bus]).forEach((stop) => {
+      const { timings, nextStops } = schedule.data[bus][stop];
+      newBusData[stop] = {
+        nextStops,
+        timings: [...timings.slice(0, i), ...timings.slice(i + 1)],
+      };
+    });
+    setSchedule({
+      ...schedule,
+      data: {
+        ...schedule.data,
+        [bus]: newBusData,
+      },
+    });
+    setEdited(true);
   };
 
   return (
@@ -108,6 +136,7 @@ const ScheduleEditor: FC<ScheduleEditorProps> = ({ schedule: cSchedule }) => {
                 handleChange={handleChange}
                 busData={busData}
                 addRow={addRow}
+                removeRow={removeRow}
               />
               {edited && (
                 <div className="text-end p-2">

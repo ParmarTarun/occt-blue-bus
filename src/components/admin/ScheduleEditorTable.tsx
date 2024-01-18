@@ -11,6 +11,7 @@ interface ScheduleEditorTableProps {
     index: number
   ) => void;
   addRow: (bus: string, i: number) => void;
+  removeRow: (bus: string, i: number) => void;
 }
 
 const ScheduleEditorTable: FC<ScheduleEditorTableProps> = ({
@@ -18,6 +19,7 @@ const ScheduleEditorTable: FC<ScheduleEditorTableProps> = ({
   busData,
   handleChange,
   addRow,
+  removeRow,
 }) => {
   const totalTimes = Object.values(busData)[0]["timings"].length;
   return (
@@ -62,7 +64,7 @@ const ScheduleEditorTable: FC<ScheduleEditorTableProps> = ({
                     />
                   </svg>
                 </button>
-                <button>
+                <button onClick={() => removeRow(bus, j)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

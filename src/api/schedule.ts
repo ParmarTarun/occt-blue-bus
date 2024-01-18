@@ -5,10 +5,26 @@ type getScheduleType = (
   name: string
 ) => Promise<{ message: string; schedule: scheduleType }>;
 
+type updateScheduleType = (
+  data: scheduleBodyType
+) => Promise<{ message: string; schedule: scheduleType }>;
+
 type getAllSchedulesType = () => Promise<{
   message: string;
   schedules: scheduleType[];
 }>;
+
+export const updateSchedule: updateScheduleType = async (
+  data: scheduleBodyType
+) => {
+  const url = process.env.REACT_APP_SCHEDULES_ENDPOINT;
+  if (!url) throw new Error("Endpoint for schedules is missing");
+  return axios
+    .put(url + "/" + data.name, data, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("bbt")}` },
+    })
+    .then((res) => res.data);
+};
 
 export const postSchedule = async (data: scheduleBodyType) => {
   const url = process.env.REACT_APP_SCHEDULES_ENDPOINT;
