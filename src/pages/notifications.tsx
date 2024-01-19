@@ -30,7 +30,7 @@ const Notifications = () => {
         {notifications.map((notification, i) => (
           <div
             key={i}
-            className="border text-primary rounded-md border-primary mt-4"
+            className="border text-primary rounded-md border-primary mt-4 break-words"
           >
             <div className="px-4 py-2 bg-primary text-secondary flex justify-between">
               <h3>{notification.createdAt.split(" ")[0]}</h3>
