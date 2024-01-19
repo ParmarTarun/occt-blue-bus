@@ -11,11 +11,8 @@ const HomePage = () => {
   }, []);
   return (
     <>
-      {/* <NextBus />
-      <Schedule /> */}
-      <div className="m-auto w-max text-2xl italic">
-        <p className="">Currently under maintenance for schedule update!</p>
-      </div>
+      <NextBus />
+      <Schedule />
     </>
   );
 };
