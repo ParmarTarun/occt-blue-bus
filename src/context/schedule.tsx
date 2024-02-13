@@ -7,6 +7,7 @@ import {
 } from "react";
 import { ReactChildrenProps, scheduleType } from "../types";
 import { getSchedule } from "../api/schedule";
+import { getScheduleFromCache, setScheduleInCache } from "../api/cache";
 
 type scheduleContextType = {
   schedule: scheduleType | null;
@@ -33,9 +34,19 @@ export function ScheduleProvider({ children }: ReactChildrenProps) {
   const [loading, setLoading] = useState(false);
 
   const fetchSchedule = (name: string) => {
+    // check in cache
+    const cachedSchedule = getScheduleFromCache(name);
+    if (cachedSchedule) {
+      setSchedule(cachedSchedule);
+      return;
+    }
+    // get from api
     setLoading(true);
     getSchedule(name)
-      .then(({ schedule }) => setSchedule(schedule))
+      .then(({ schedule }) => {
+        setScheduleInCache(name, schedule);
+        setSchedule(schedule);
+      })
       .catch((e: Error) => {
         alert("Failed to fetch schedule");
         console.log(e);

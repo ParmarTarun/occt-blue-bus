@@ -44,6 +44,7 @@ const NextBus = () => {
             name="stop"
             className="bg-transparent border border-primary rounded-md p-2"
             onChange={(e) => handleStopSelect(e.target.value)}
+            disabled={loadingSchedule}
           >
             {allstops.map((stop, i) => (
               <option value={stop} key={i}>
