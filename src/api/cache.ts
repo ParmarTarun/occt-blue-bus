@@ -3,9 +3,12 @@ import { scheduleType } from "../types";
 export const getScheduleFromCache: (p: string) => scheduleType | null = (
   name
 ) => {
-  const schedule = localStorage.getItem(name);
-  if (!schedule) return null;
-  return JSON.parse(schedule);
+  //disabling cache for some time
+  return null;
+
+  // const schedule = localStorage.getItem(name);
+  // if (!schedule) return null;
+  // return JSON.parse(schedule);
 };
 
 export const setScheduleInCache: (p: string, data: scheduleType) => void = (
